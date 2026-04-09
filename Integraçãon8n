@@ -1,0 +1,114 @@
+// integração com Webhook para cadastro
+const readline = require("readline");
+const http = require("http");
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const cadastros = [];
+
+function exibirMenu() {
+    console.log("================================");
+    console.log("Bem-vindo ao cadastro de clientes!");
+    console.log("================================");
+    console.log("[1] Novo Cadastro");
+    console.log("[2] Consultar Cadastros");
+    console.log("[3] Sair");
+    console.log("================================");
+}
+
+function formatarNumero(numero) {
+    let numeroLimpo = numero.replace(/\D/g, "");
+    if (numeroLimpo.length === 11 && numeroLimpo.startsWith("55")) {
+        // já tem código do país
+    } else if (numeroLimpo.length === 11) {
+        numeroLimpo = numeroLimpo.slice(0, 2) + numeroLimpo.slice(3);
+    }
+    if (!numeroLimpo.startsWith("55")) {
+        numeroLimpo = "55" + numeroLimpo;
+    }
+    return `${numeroLimpo}@s.whatsapp.net`;
+}
+
+function enviarWebhook(dados, callback) {
+    const payload = JSON.stringify(dados);
+    const opcoes = {
+        hostname: "localhost",
+        port: 5678,
+        path: "/webhook-test/fa594084-f820-48a6-a731-55193138f71c",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Content-Length": Buffer.byteLength(payload)
+        }
+    };
+
+    const req = http.request(opcoes, function(res) {
+        console.log(`Status do webhook: ${res.statusCode}`);
+        res.on("data", () => {});
+        res.on("end", () => callback());
+    });
+
+    req.on("error", function(err) {
+        console.error(`Erro no webhook: ${err.message}`);
+        callback();
+    });
+
+    req.write(payload);
+    req.end();
+}
+
+function cadastrarCliente(callback) {
+    rl.question("Seu nome: ", function(nome) {
+        rl.question("Seu numero: ", function(numero) {
+            rl.question("Seu email: ", function(email) {
+                const numeroCerto = formatarNumero(numero);
+                const cliente = { nome, numero: numeroCerto, email };
+                cadastros.push(cliente);
+
+                console.log(`Cadastro concluído! Nome: ${nome}, Número: ${numeroCerto}, Email: ${email}`);
+
+                enviarWebhook(cliente, function() {
+                    callback();
+                });
+            });
+        });
+    });
+}
+
+function consultarCadastros(callback) {
+    if (cadastros.length === 0) {
+        console.log("Nenhum cadastro encontrado.");
+    } else {
+        console.log("Cadastros: ");
+        cadastros.forEach((c, index) => {
+            console.log(`${index + 1}. Nome: ${c.nome} - Número: ${c.numero} - Email: ${c.email}`);
+        });
+    }
+    callback();
+}
+
+function iniciar() {
+    exibirMenu();
+    rl.question("Escolha uma opção: ", function(opcao) {
+        switch (opcao.trim()) {
+            case "1":
+                cadastrarCliente(iniciar);
+                break;
+            case "2":
+                consultarCadastros(iniciar);
+                break;
+            case "3":
+                console.log("Saindo...");
+                rl.close();
+                break;
+            default:
+                console.log("Opção inválida. Tente novamente.");
+                iniciar();
+                break;
+        }
+    });
+}
+
+iniciar();
