@@ -13,8 +13,7 @@ function exibirMenu() {
     console.log("Bem-vindo ao cadastro de clientes!");
     console.log("================================");
     console.log("[1] Novo Cadastro");
-    console.log("[2] Consultar Cadastros");
-    console.log("[3] Sair");
+    console.log("[2] Sair");
     console.log("================================");
 }
 
@@ -88,7 +87,7 @@ function consultarCadastros(callback) {
     }
     callback();
 }
-
+//menu
 function iniciar() {
     exibirMenu();
     rl.question("Escolha uma opção: ", function(opcao) {
@@ -97,9 +96,6 @@ function iniciar() {
                 cadastrarCliente(iniciar);
                 break;
             case "2":
-                consultarCadastros(iniciar);
-                break;
-            case "3":
                 console.log("Saindo...");
                 rl.close();
                 break;
