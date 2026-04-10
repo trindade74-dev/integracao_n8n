@@ -4,13 +4,13 @@
       "parameters": {
         "resource": "messages-api",
         "instanceName": "[NOME_DA_INSTANCIA]",
-        "remoteJid": "=[REMOTE_JID]",
+        "remoteJid": "={{ $('Webhook').item.json.body.numero }}",
         "messageText": "=Olá ! 👋\n\nRecebemos seu cadastro. Para confirmar, responda essa mensagem com *SIM*.",
         "options_message": {}
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
-      "position": [96, -192],
+      "position": [-64, -176],
       "id": "[ID_CENSURADO]",
       "name": "Enviar texto",
       "credentials": {
@@ -24,12 +24,12 @@
       "parameters": {
         "sendTo": "={{ $('Webhook').item.json.body.email }}",
         "subject": "Confirmação de cadastro",
-        "message": "=[HTML_CENSURADO]",
+        "message": "[HTML_CENSURADO]",
         "options": {}
       },
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
-      "position": [96, 128],
+      "position": [-64, 144],
       "id": "[ID_CENSURADO]",
       "name": "Send a message",
       "webhookId": "[WEBHOOK_ID_CENSURADO]",
@@ -42,43 +42,11 @@
     },
     {
       "parameters": {
-        "tableId": "Cadastros",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": "Nome",
-              "fieldValue": "={{ $json.numero }}"
-            },
-            {
-              "fieldId": "Numero",
-              "fieldValue": "={{ $json.numero }}"
-            },
-            {
-              "fieldId": "Email",
-              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [-224, -32],
-      "id": "[ID_CENSURADO]",
-      "name": "Create a row",
-      "credentials": {
-        "supabaseApi": {
-          "id": "[CREDENTIAL_ID]",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "jsCode": "const numero = $input.first().json.body.numero;\nconst nome = $input.first().json.body.nome;\n\nconst limpo = numero\n    .replace(\"@s.whatsapp.net\", \"\")\n    .slice(2);\n\nconst comDDD = limpo.slice(0, 2) + \"9\" + limpo.slice(2);\n\nconst nomeFormatado = nome\n    .split(\" \")\n    .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase())\n    .join(\" \");\n\nreturn [{ json: { numero: comDDD, nome: nomeFormatado } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [-496, -32],
+      "position": [-704, -32],
       "id": "[ID_CENSURADO]",
       "name": "Code in JavaScript"
     },
@@ -90,28 +58,50 @@
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
-      "position": [-784, -32],
+      "position": [-992, -32],
       "id": "[ID_CENSURADO]",
       "name": "Webhook",
       "webhookId": "[WEBHOOK_ID_CENSURADO]"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [-400, -32],
+      "id": "[ID_CENSURADO]",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "[CREDENTIAL_ID]",
+          "name": "Google Sheets account"
+        }
+      }
     }
   ],
   "connections": {
     "Enviar texto": { "main": [[]] },
-    "Create a row": {
-      "main": [[
-        { "node": "Send a message", "type": "main", "index": 0 },
-        { "node": "Enviar texto", "type": "main", "index": 0 }
-      ]]
-    },
     "Code in JavaScript": {
-      "main": [[
-        { "node": "Create a row", "type": "main", "index": 0 }
-      ]]
+      "main": [[{ "node": "Append row in sheet", "type": "main", "index": 0 }]]
     },
     "Webhook": {
+      "main": [[{ "node": "Code in JavaScript", "type": "main", "index": 0 }]]
+    },
+    "Append row in sheet": {
       "main": [[
-        { "node": "Code in JavaScript", "type": "main", "index": 0 }
+        { "node": "Enviar texto", "type": "main", "index": 0 },
+        { "node": "Send a message", "type": "main", "index": 0 }
       ]]
     }
   },
