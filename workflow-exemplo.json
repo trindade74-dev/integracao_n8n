@@ -24,66 +24,7 @@
       "parameters": {
         "sendTo": "={{ $('Webhook').item.json.body.email }}",
         "subject": "Confirmação de cadastro",
-        "message": "[<!DOCTYPE html> <html lang="pt-BR"> <head>   <meta charset="UTF-8" />   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>   <title>Bem-vindo ao grupo!</title> </head> <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,sans-serif;">   <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">     <tr>       <td align="center">         <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);">                      <!-- Header -->           <tr>             <td style="background-color:#25D366;padding:40px;text-align:center;">               <p style="margin:0;font-size:48px;">✅</p>               <h1 style="margin:16px 0 0;color:#ffffff;font-size:26px;font-weight:700;">Cadastro confirmado!</h1>             </td>           </tr>            <!-- Body -->           <tr>             <td style="padding:40px;color:#333333;">               <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">Olá, <strong>{{$json.body.nome}}</strong>! 👋</p>               <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">Seu cadastro foi recebido com sucesso. Agora você está a um clique de entrar no nosso grupo de WhatsApp.</p>               <p style="font-size:16px;line-height:1.6;margin:0 0 32px;">Lá você vai receber novidades, atualizações e suporte direto pelo WhatsApp. 🚀</p>                <!-- Botão -->               <table cellpadding="0" cellspacing="0" width="100%">                 <tr>                   <td align="center">                     <a href="https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1"                        target="_blank"                        style="display:inline-block;background-color:#25D366;color:#ffffff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 40px;border-radius:50px;">                       📲 Entrar no grupo                     </a>                   </td>                 </tr>               </table>                <p style="font-size:13px;color:#999999;margin:32px 0 0;text-align:center;">Se o botão não funcionar, copie e cole o link no navegador:<br/>                 <a href="https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1" style="color:#25D366;">https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1</a>               </p>             </td>           </tr>            <!-- Footer -->           <tr>             <td style="background-color:#f9f9f9;padding:24px;text-align:center;border-top:1px solid #eeeeee;">               <p style="margin:0;font-size:12px;color:#aaaaaa;">Você recebeu este e-mail porque preencheu nosso formulário de cadastro.</p>             </td>           </tr>          </table>       </td>     </tr>   </table> </body> </html><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bem-vindo ao grupo!</title>
-</head>
-<body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:40px 0;">
-    <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-          
-          <!-- Header -->
-          <tr>
-            <td style="background-color:#25D366;padding:40px;text-align:center;">
-              <p style="margin:0;font-size:48px;">✅</p>
-              <h1 style="margin:16px 0 0;color:#ffffff;font-size:26px;font-weight:700;">Cadastro confirmado!</h1>
-            </td>
-          </tr>
-
-          <!-- Body -->
-          <tr>
-            <td style="padding:40px;color:#333333;">
-              <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">Olá, <strong>{{$json.body.nome}}</strong>! 👋</p>
-              <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">Seu cadastro foi recebido com sucesso. Agora você está a um clique de entrar no nosso grupo de WhatsApp.</p>
-              <p style="font-size:16px;line-height:1.6;margin:0 0 32px;">Lá você vai receber novidades, atualizações e suporte direto pelo WhatsApp. 🚀</p>
-
-              <!-- Botão -->
-              <table cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td align="center">
-                    <a href="https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1"
-                       target="_blank"
-                       style="display:inline-block;background-color:#25D366;color:#ffffff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 40px;border-radius:50px;">
-                      📲 Entrar no grupo
-                    </a>
-                  </td>
-                </tr>
-              </table>
-
-              <p style="font-size:13px;color:#999999;margin:32px 0 0;text-align:center;">Se o botão não funcionar, copie e cole o link no navegador:<br/>
-                <a href="https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1" style="color:#25D366;">https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1</a>
-              </p>
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background-color:#f9f9f9;padding:24px;text-align:center;border-top:1px solid #eeeeee;">
-              <p style="margin:0;font-size:12px;color:#aaaaaa;">Você recebeu este e-mail porque preencheu nosso formulário de cadastro.</p>
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>]",
+        "message": "=<!DOCTYPE html> <html lang=\"pt-BR\"> <head>   <meta charset=\"UTF-8\" />   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>   <title>Bem-vindo ao grupo!</title> </head> <body style=\"margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,sans-serif;\">   <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f4f4f4;padding:40px 0;\">     <tr>       <td align=\"center\">         <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);\">                      <!-- Header -->           <tr>             <td style=\"background-color:#25D366;padding:40px;text-align:center;\">               <p style=\"margin:0;font-size:48px;\">✅</p>               <h1 style=\"margin:16px 0 0;color:#ffffff;font-size:26px;font-weight:700;\">Cadastro confirmado!</h1>             </td>           </tr>            <!-- Body -->           <tr>             <td style=\"padding:40px;color:#333333;\">               <p style=\"font-size:16px;line-height:1.6;margin:0 0 16px;\">Olá, <strong>{{$json.body.nome}}</strong>! 👋</p>               <p style=\"font-size:16px;line-height:1.6;margin:0 0 16px;\">Seu cadastro foi recebido com sucesso. Agora você está a um clique de entrar no nosso grupo de WhatsApp.</p>               <p style=\"font-size:16px;line-height:1.6;margin:0 0 32px;\">Lá você vai receber novidades, atualizações e suporte direto pelo WhatsApp. 🚀</p>                <!-- Botão -->               <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">                 <tr>                   <td align=\"center\">                     <a href=\"https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1\"                        target=\"_blank\"                        style=\"display:inline-block;background-color:#25D366;color:#ffffff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 40px;border-radius:50px;\">                       📲 Entrar no grupo                     </a>                   </td>                 </tr>               </table>                <p style=\"font-size:13px;color:#999999;margin:32px 0 0;text-align:center;\">Se o botão não funcionar, copie e cole o link no navegador:<br/>                 <a href=\"https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1\" style=\"color:#25D366;\">https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1</a>               </p>             </td>           </tr>            <!-- Footer -->           <tr>             <td style=\"background-color:#f9f9f9;padding:24px;text-align:center;border-top:1px solid #eeeeee;\">               <p style=\"margin:0;font-size:12px;color:#aaaaaa;\">Você recebeu este e-mail porque preencheu nosso formulário de cadastro.</p>             </td>           </tr>          </table>       </td>     </tr>   </table> </body> </html><!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n  <title>Bem-vindo ao grupo!</title>\n</head>\n<body style=\"margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,sans-serif;\">\n  <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f4f4f4;padding:40px 0;\">\n    <tr>\n      <td align=\"center\">\n        <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);\">\n          \n          <!-- Header -->\n          <tr>\n            <td style=\"background-color:#25D366;padding:40px;text-align:center;\">\n              <p style=\"margin:0;font-size:48px;\">✅</p>\n              <h1 style=\"margin:16px 0 0;color:#ffffff;font-size:26px;font-weight:700;\">Cadastro confirmado!</h1>\n            </td>\n          </tr>\n\n          <!-- Body -->\n          <tr>\n            <td style=\"padding:40px;color:#333333;\">\n              <p style=\"font-size:16px;line-height:1.6;margin:0 0 16px;\">Olá, <strong>{{$json.body.nome}}</strong>! 👋</p>\n              <p style=\"font-size:16px;line-height:1.6;margin:0 0 16px;\">Seu cadastro foi recebido com sucesso. Agora você está a um clique de entrar no nosso grupo de WhatsApp.</p>\n              <p style=\"font-size:16px;line-height:1.6;margin:0 0 32px;\">Lá você vai receber novidades, atualizações e suporte direto pelo WhatsApp. 🚀</p>\n\n              <!-- Botão -->\n              <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\n                <tr>\n                  <td align=\"center\">\n                    <a href=\"https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1\"\n                       target=\"_blank\"\n                       style=\"display:inline-block;background-color:#25D366;color:#ffffff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 40px;border-radius:50px;\">\n                      📲 Entrar no grupo\n                    </a>\n                  </td>\n                </tr>\n              </table>\n\n              <p style=\"font-size:13px;color:#999999;margin:32px 0 0;text-align:center;\">Se o botão não funcionar, copie e cole o link no navegador:<br/>\n                <a href=\"https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1\" style=\"color:#25D366;\">https://chat.whatsapp.com/FJhqFMGqKhgE3nBHLPcgT1</a>\n              </p>\n            </td>\n          </tr>\n\n          <!-- Footer -->\n          <tr>\n            <td style=\"background-color:#f9f9f9;padding:24px;text-align:center;border-top:1px solid #eeeeee;\">\n              <p style=\"margin:0;font-size:12px;color:#aaaaaa;\">Você recebeu este e-mail porque preencheu nosso formulário de cadastro.</p>\n            </td>\n          </tr>\n\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>",
         "options": {}
       },
       "type": "n8n-nodes-base.gmail",
